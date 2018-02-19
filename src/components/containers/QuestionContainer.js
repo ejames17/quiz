@@ -1,28 +1,40 @@
 import Question from '../ui/Question';
-import {setSelectedAnswer} from '../../actions';
+import {setSelectedAnswer, setProgressCounter} from '../../actions';
 import {connect} from 'react-redux';
 
 
 const mapStateToProps = (state) => {
-    console.log('map state to props ', state.questions[state.progressCounter], ' counter is ',state.progressCounter);
     return {
         question : state.questions[state.progressCounter].question,
         currentQuestion: state.progressCounter,
-        choices: state.questions[state.progressCounter].choices
+        choices: state.questions[state.progressCounter].choices,
+        questionIndex: state.progressCounter
     }
 
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSelectAnswer:(questionIndex, key) => {
-            console.log('dispatch fired==========', questionIndex, key);
+        onSelectAnswer:(e) => {
+            const question = JSON.parse(e.target.value);
             dispatch(
-                setSelectedAnswer(questionIndex, key)
+
+                setSelectedAnswer(question.questionIndex, question.answer),
+
+            );
+            dispatch(
+
+                setProgressCounter(question.questionIndex),
+
             )
+
+
+
         }
     }
 }
+
+
 
 const Container = connect(mapStateToProps, mapDispatchToProps)(Question);
 

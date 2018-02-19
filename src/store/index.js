@@ -1,8 +1,9 @@
-import C from '../constants';
+import thunk from 'redux-thunk';
+
 import appReducer from './reducers';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 
 export default (intialState = {}) => {
-    return createStore(appReducer, intialState);
+    return applyMiddleware(thunk)(createStore)(appReducer, intialState);
 }

@@ -6,7 +6,7 @@ export const  questions = (state = {}, action) => {
         case C.ADD_QUESTION:
             return [
                 ...state,
-                action.payload
+                action.payload.question
             ];
         default:
             return state;
@@ -21,10 +21,6 @@ export const  questions = (state = {}, action) => {
                      action.payload
                  ];
 
-         case C.ADD_QUESTION:
-             return [
-
-             ]
          default:
              return state
      }
@@ -33,7 +29,7 @@ export const  questions = (state = {}, action) => {
  export const progressCounter = (state = 0, action) => {
     switch (action.type) {
         case C.SET_PROGRESS_COUNTER:
-            return action.payload;
+            return action.payload.progressCounter;
         default:
             return state;
     }
