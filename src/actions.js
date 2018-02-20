@@ -75,5 +75,7 @@ export const calculateScore = () => (dispatch, getState) => {
             numCorrect++;
         }
     });
-   dispatch(setScore(numCorrect / state.questions.length ));
+    const calcScore  = Math.round((numCorrect / state.questions.length) * 100);
+
+   dispatch(setScore(calcScore));
 }

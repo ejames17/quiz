@@ -5,10 +5,12 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        question : state.questions[state.progressCounter].question,
+        question : (state.progressCounter < state.questions.length) ? state.questions[state.progressCounter].question: '',
         currentQuestion: state.progressCounter,
-        choices: state.questions[state.progressCounter].choices,
-        questionIndex: state.progressCounter
+        choices: (state.progressCounter < state.questions.length) ? state.questions[state.progressCounter].choices: '',
+        questionIndex: state.progressCounter,
+        inProgress: (state.progressCounter < state.questions.length),
+        score: state.score
     }
 
 }
