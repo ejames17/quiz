@@ -36,8 +36,19 @@ export const  questions = (state = {}, action) => {
 
 }
 
+export const score = (state = 0, action) => {
+    switch (action.type) {
+        case C.SET_SCORE:
+            return action.payload.score;
+        default:
+            return state;
+    }
+}
+
  export default combineReducers({
      selectedAnswers,
      questions,
-     progressCounter
+     score,
+     progressCounter,
+
  });

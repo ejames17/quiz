@@ -23,9 +23,17 @@ export function setProgressCounter(questionIndex = 0) {
 }
 
 
+export function setScore(score = 0) {
+    return {
+        type: C.SET_SCORE,
+        payload: {
+            score: score
+        }
+    }
+}
 
 export function addQuestion(question = {}) {
-    //should be using selectors to access global state tree but using session storage since its overkill
+
     const initState = JSON.parse(sessionStorage.getItem('initialState'));
     const newInitState = {
         ...initState,
@@ -54,4 +62,18 @@ export const getQuestions = () => (dispatch, getState) => {
             console.error('[Error fetching questions ] ',error);
             //TODO: should dispatch action to handle error
         })
+}
+
+export const calculateScore = () => (dispatch, getState) => {
+    //lets calculatoe our score
+    let numCorrect = 0;
+    const state = getState();
+    const selectedAnswers = state.selectedAnswers;
+    selectedAnswers.map(selectedAnswer => {
+
+        if(selectedAnswer.answer === state.questions[selectedAnswer.questionIndex].answerKey){
+            numCorrect++;
+        }
+    });
+   dispatch(setScore(numCorrect / state.questions.length ));
 }

@@ -1,5 +1,5 @@
 import Question from '../ui/Question';
-import {setSelectedAnswer, setProgressCounter} from '../../actions';
+import {setSelectedAnswer, setProgressCounter, calculateScore} from '../../actions';
 import {connect} from 'react-redux';
 
 
@@ -25,6 +25,11 @@ const mapDispatchToProps = dispatch => {
             dispatch(
 
                 setProgressCounter(question.questionIndex),
+
+            )
+            dispatch(
+
+                calculateScore(),
 
             )
 
