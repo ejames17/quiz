@@ -19,7 +19,7 @@ class NewQuestion extends Component {
         }
     }
     handleChange(e) {
-        console.log('handling change ', e.target.id);
+
        // this.setState
 
         switch(e.target.id){
@@ -104,7 +104,6 @@ class NewQuestion extends Component {
         }
         const choices = Object.values(this.state.formData.choices);
         const vals = Object.values(this.state.formData);
-        console.log('vals are ',vals, ' choices are ', choices);
         (choices.every(choice => choice) && vals.every(val => val )) ? this.setState({
             ...this.state.formData,
             disabled:false
